@@ -1,0 +1,28 @@
+:root {
+    --color-s: lightcoral;
+    --color-a: lightsalmon;
+    --color-b: lightgoldenrodyellow;
+    --color-c: lightgreen;
+    --color-d: lightseagreen;
+    --color-e: lightskyblue;
+    --color-f: mediumslateblue;
+    --color-g: lightpink;
+}
+
+.tlm-color-s { color: var(--color-s) !important; }
+.tlm-color-a { color: var(--color-a) !important; }
+.tlm-color-b { color: var(--color-b) !important; }
+.tlm-color-c { color: var(--color-c) !important; }
+.tlm-color-d { color: var(--color-d) !important; }
+.tlm-color-e { color: var(--color-e) !important; }
+.tlm-color-f { color: var(--color-f) !important; }
+.tlm-color-g { color: var(--color-g) !important; }
+
+.tlm-bgcolor-s { background-color: var(--color-s) !important; }
+.tlm-bgcolor-a { background-color: var(--color-a) !important; }
+.tlm-bgcolor-b { background-color: var(--color-b) !important; }
+.tlm-bgcolor-c { background-color: var(--color-c) !important; }
+.tlm-bgcolor-d { background-color: var(--color-d) !important; }
+.tlm-bgcolor-e { background-color: var(--color-e) !important; }
+.tlm-bgcolor-f { background-color: var(--color-f) !important; }
+.tlm-bgcolor-g { background-color: var(--color-g) !important; }
