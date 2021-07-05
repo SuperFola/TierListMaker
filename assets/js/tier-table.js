@@ -54,14 +54,15 @@ function moveRowUp(row_id, table_id) {
 function moveRowDown(row_id, table_id) {
     const table = document.getElementById(table_id);
     const row = document.getElementById(row_id);
+
     const next = row.nextSibling?.nextSibling;
-
-    if (next === null) {
-        return;
+    if (next !== null) {
+        row.parentElement.removeChild(row);
+        table.insertBefore(row, next);
+    } else if (row.nextSibling !== null && next === null) {
+        row.parentElement.removeChild(row);
+        table.appendChild(row);
     }
-
-    row.parentElement.removeChild(row);
-    table.insertBefore(row, next);
 }
 
 function editRow(row_id, table_id) {}
