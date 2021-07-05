@@ -21,13 +21,17 @@ function saveModal() {
         reader.onload = (e) => {
             let img = document.createElement('img');
             img.src = e.target.result;
-            if (stretch) {
-                img.width = img.height = 128;
-            } else {
-                img.height = 128;
-            }
+            img.height = 128;
+            if (stretch)
+                img.width = 128;
+            img.setAttribute('id', stringToHash(img.src));
+            img.setAttribute('draggable', 'true');
+
             img.addEventListener('click', (ev) => {
                 ev.target.parentElement.removeChild(ev.target);
+            });
+            img.addEventListener('dragstart', (ev) => {
+                ev.dataTransfer.setData('text/plain', ev.target.id);
             });
 
             cb(img);
