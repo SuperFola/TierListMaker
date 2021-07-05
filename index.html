@@ -28,30 +28,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/SuperFola/TierListMaker">Source code</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                            <a class="nav-link" href="https://paypal.me/lexplt">
+                                Support me
+                                &nbsp;
+                                <span class="icon">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </span>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            <a class="nav-link" href="https://github.com/SuperFola/TierListMaker">
+                                Source code
+                                &nbsp;
+                                <span class="icon">
+                                    <i class="fab fa-github"></i>
+                                </span>
+                            </a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -78,6 +72,41 @@
                 <div class="w-max-25 p-2">
                     Number of rows
                     <select class="form-select" aria-label="Row count" id="selectRowCount"></select>
+                    <hr>
+                    <p>
+                        Click on an image to remove it.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="addContentModal" tabindex="-1" aria-labelledby="addContentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addContentModalTitle"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="addContentModalBody">
+                        <form>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Choose an image</label>
+                                <input class="form-control" type="file" accept="image/x-png,image/gif,image/jpeg" id="formFile">
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Stretch image</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="colorInput" class="form-label">Tier color</label>
+                                <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your color">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="addContentModalSaveBtn">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>

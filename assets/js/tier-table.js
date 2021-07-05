@@ -65,18 +65,42 @@ function moveRowDown(row_id, table_id) {
     }
 }
 
-function editRow(row_id, table_id) {}
+function addElementInRow(row_id, table_id) {
+    const tier = tiers.filter((value) => value.toLowerCase() === row_id.replace(/^tier-/, ''))[0];
+    document.getElementById('addContentModalTitle').innerText = `Add content to tier ${tier}`;
+
+    const tier_color = window.getComputedStyle(document.getElementById(row_id).firstChild)
+        .getPropertyValue('background-color')
+        .replace(/^rgb/, '')
+        .replace('(', '')
+        .replace(')', '')
+        .split(', ')
+        .map(value => parseInt(value).toString(16))
+        .join('')
+        .replace(/.+/, '#$&');
+    document.getElementById('colorInput').value = tier_color;
+
+    const el = document.getElementById('addContentModal');
+    const modal = bootstrap.Modal.getInstance(el);
+
+    modal.data = {
+        color: tier_color,
+        tier: row_id,
+    };
+
+    modal.toggle();
+}
 
 function createSettingsTd(row_id, table_id) {
-    let edit = createFAElement('fas', 'fa-edit');
-    edit.addEventListener('click', () => editRow(row_id, table_id));
+    let add = createFAElement('fas', 'fa-plus');
+    add.addEventListener('click', () => addElementInRow(row_id, table_id));
     let go_up = createFAElement('fas', 'fa-level-up-alt');
     go_up.addEventListener('click', () => moveRowUp(row_id, table_id));
     let go_down = createFAElement('fas', 'fa-level-down-alt');
     go_down.addEventListener('click', () => moveRowDown(row_id, table_id));
 
     let container = document.createElement('td');
-    [edit, go_up, go_down].forEach((el, idx, max) => {
+    [add, go_up, go_down].forEach((el, idx, max) => {
         el.classList.add('tlm-pointer');
         container.appendChild(el);
         if (idx !== max - 1)
