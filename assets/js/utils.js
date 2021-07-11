@@ -13,3 +13,15 @@ function stringToHash(string) {
 
     return hash;
 }
+
+function getElemProperty(el, prop) {
+    return window.getComputedStyle(el).getPropertyValue('width');
+}
+
+function elementWidth(el) {
+    return parseInt(getElemProperty(el, 'width').replace('px', ''));
+}
+
+function elementHeight(el) {
+    return parseInt(getElemProperty(el, 'height').replace('px', ''));
+}

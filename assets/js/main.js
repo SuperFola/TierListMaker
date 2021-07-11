@@ -1,48 +1,3 @@
-function saveModal() {
-    const modal = bootstrap.Modal.getInstance(document.getElementById('addContentModal'));
-    const stretch = document.getElementById('flexSwitchCheckDefault').checked;
-    const image = document.getElementById('formFile').files[0];
-    const color = document.getElementById('colorInput').value;
-
-    const cb = (...els) => {
-        const data = modal.data;
-        let tier_row = document.getElementById(data.tier);
-
-        tier_row.firstChild.classList.remove(`tlm-bgcolor-${data.tier.replace(/^tier-/, '')}`);
-        tier_row.firstChild.style.backgroundColor = color;
-
-        els.forEach(el => tier_row.children[1].appendChild(el));
-
-        modal.hide();
-    };
-
-    if (image !== undefined) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            let img = document.createElement('img');
-            img.src = e.target.result;
-            img.height = 128;
-            if (stretch)
-                img.width = 128;
-            img.setAttribute('id', stringToHash(img.src));
-            img.setAttribute('draggable', 'true');
-
-            img.addEventListener('click', (ev) => {
-                ev.target.parentElement.removeChild(ev.target);
-            });
-            img.addEventListener('dragstart', (ev) => {
-                ev.dataTransfer.setData('text/plain', ev.target.id);
-            });
-
-            cb(img);
-        };
-        reader.readAsDataURL(image);
-    } else {
-        cb();
-    }
-}
-
-
 document.onreadystatechange = () => {
     if (document.readyState !== 'complete') {
         return;
@@ -55,7 +10,7 @@ document.onreadystatechange = () => {
         generateTable('tableBody', selected);
     });
 
-    tiers.forEach((name, idx, max) => {
+    tiers.forEach((name, idx) => {
         const position = idx + 1;
 
         let option = document.createElement('option');
@@ -66,7 +21,8 @@ document.onreadystatechange = () => {
     selectRowCount.selectedIndex = tiers.length - 1;
     generateTable('tableBody');
 
-    new bootstrap.Modal(document.getElementById('addContentModal'));
+    document.getElementById('btn-export').addEventListener('click', export2image);
 
+    new bootstrap.Modal(document.getElementById('addContentModal'));
     document.getElementById('addContentModalSaveBtn').addEventListener('click', saveModal);
 };

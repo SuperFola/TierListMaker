@@ -15,7 +15,10 @@
         <link href="/assets/css/colors.css" rel="stylesheet">
         <link href="/assets/css/custom.css" rel="stylesheet">
 
+        <script src="/assets/js/html2canvas.min.js" defer></script>
         <script src="/assets/js/utils.js" defer></script>
+        <script src="/assets/js/export2image.js" defer></script>
+        <script src="/assets/js/saveModal.js" defer></script>
         <script src="/assets/js/tier-table.js" defer></script>
         <script src="/assets/js/main.js" defer></script>
     </head>
@@ -59,7 +62,7 @@
                             <tr>
                                 <th scope="col" class="col-1 text-center">Tier</th>
                                 <th scope="col" class="col-9 text-center">Content</th>
-                                <th scope="col" class="col-2 text-center">
+                                <th scope="col" class="col-2 text-center" id="settings">
                                     <span class="d-none d-md-inline">Settings</span>
                                     <span class="icon">
                                         <i class="fas fa-cog"></i>
@@ -76,6 +79,8 @@
                     <hr>
                     <p>Click on an image to remove it.</p>
                     <p>Drag an image from a tier to another to move it.</p>
+                    <hr>
+                    <button type="button" class="btn btn-primary" id="btn-export">Export as image</button>
                 </div>
             </div>
         </div>
