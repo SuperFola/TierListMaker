@@ -2,6 +2,14 @@
 
 A fun side-project to make tier lists in your browser.
 
+## Features
+
+* drag-to-upload (one or more images)
+* drag and drop images between tiers to reorder them
+* change the color of a given tier
+* stretch (to a square) or not an image when uploading it using the `+`
+* export as an image
+
 ## Launching
 
 ```shell
