@@ -1,22 +1,16 @@
 function saveModal() {
     const modal = bootstrap.Modal.getInstance(document.getElementById('addContentModal'));
+    const data = modal.data;
+    let tier_row = document.getElementById(data.tier);
+
     const stretch = document.getElementById('flexSwitchCheckDefault').checked;
-    const image = document.getElementById('formFile').files[0];
     const color = document.getElementById('colorInput').value;
+    const files = document.getElementById('formFile').files;
 
-    const cb = (...els) => {
-        const data = modal.data;
-        let tier_row = document.getElementById(data.tier);
+    tier_row.firstChild.classList.remove(`tlm-bgcolor-${data.tier.replace(/^tier-/, '')}`);
+    tier_row.firstChild.style.backgroundColor = color;
 
-        tier_row.firstChild.classList.remove(`tlm-bgcolor-${data.tier.replace(/^tier-/, '')}`);
-        tier_row.firstChild.style.backgroundColor = color;
-
-        els.forEach(el => tier_row.children[1].appendChild(el));
-
-        modal.hide();
-    };
-
-    if (image !== undefined) {
+    files.forEach(image => {
         const reader = new FileReader();
         reader.onload = (e) => {
             let img = document.createElement('img');
@@ -34,10 +28,10 @@ function saveModal() {
                 ev.dataTransfer.setData('text/plain', ev.target.id);
             });
 
-            cb(img);
+            tier_row.children[1].appendChild(img);
         };
         reader.readAsDataURL(image);
-    } else {
-        cb();
-    }
+    });
+
+    modal.hide();
 }
