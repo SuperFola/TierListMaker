@@ -145,7 +145,6 @@ function generateTable(identifier, count=-1) {
             const el = document.getElementById(id);
             const drop_zone = ev.target;
             drop_zone.appendChild(el);
-            ev.dataTransfer.clearData();
         });
         row.appendChild(tier_th);
         row.appendChild(content);

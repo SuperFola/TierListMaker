@@ -5,7 +5,7 @@ function saveModal() {
 
     const stretch = document.getElementById('flexSwitchCheckDefault').checked;
     const color = document.getElementById('colorInput').value;
-    const files = document.getElementById('formFile').files;
+    const files = toArray(document.getElementById('formFile').files);
 
     tier_row.firstChild.classList.remove(`tlm-bgcolor-${data.tier.replace(/^tier-/, '')}`);
     tier_row.firstChild.style.backgroundColor = color;
@@ -34,4 +34,6 @@ function saveModal() {
     });
 
     modal.hide();
+
+    document.getElementById('formFile').value = null;
 }

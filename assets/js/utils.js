@@ -15,7 +15,7 @@ function stringToHash(string) {
 }
 
 function getElemProperty(el, prop) {
-    return window.getComputedStyle(el).getPropertyValue('width');
+    return window.getComputedStyle(el).getPropertyValue(prop);
 }
 
 function elementWidth(el) {
@@ -24,4 +24,8 @@ function elementWidth(el) {
 
 function elementHeight(el) {
     return parseInt(getElemProperty(el, 'height').replace('px', ''));
+}
+
+function toArray(array_like) {
+    return Array.prototype.slice.call(array_like);
 }
