@@ -132,20 +132,44 @@ function generateTable(identifier, count=-1) {
         tier_th.classList.add(`tlm-bgcolor-${row_name}`, 'text-center', 'align-middle');
         tier_th.innerText = value;
 
+        let fake_input = document.createElement('input');
+        fake_input.type = 'file';
+        fake_input.accept = 'image/*';
+        fake_input.multiple = true;
+        fake_input.addEventListener('change', () => {
+            toArray(fake_input.files).forEach((img) => {
+                loadImageAndAddToDOM(img, false, (el) => {
+                    content.appendChild(el);
+                });
+            });
+        });
+
         const content = document.createElement('td');
+        ['enter', 'over', 'leave'].forEach(name => {
+            content.addEventListener(`drag${name}`, preventDefault, false);
+        });
+        content.addEventListener('drop', (ev) => {
+            preventDefault(ev);
+
+            const files = toArray(ev.dataTransfer.files);
+            if (files.length !== 0) {
+                files.forEach((img) => {
+                    loadImageAndAddToDOM(img, false, (el) => {
+                        content.appendChild(el);
+                    });
+                });
+            } else {
+                const id = ev.dataTransfer.getData('text');
+                const el = document.getElementById(id);
+                const drop_zone = ev.target;
+                drop_zone.appendChild(el);
+            }
+        }, false);
+
         const settings = createSettingsTd(row_identifier, identifier);
 
         const row = document.createElement('tr');
         row.setAttribute('id', row_identifier);
-        row.addEventListener('dragover', (ev) => {
-            ev.preventDefault();
-        });
-        row.addEventListener('drop', (ev) => {
-            const id = ev.dataTransfer.getData('text');
-            const el = document.getElementById(id);
-            const drop_zone = ev.target;
-            drop_zone.appendChild(el);
-        });
         row.appendChild(tier_th);
         row.appendChild(content);
         row.appendChild(settings);

@@ -29,3 +29,31 @@ function elementHeight(el) {
 function toArray(array_like) {
     return Array.prototype.slice.call(array_like);
 }
+
+function loadImageAndAddToDOM(file, stretch, cb) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        let img = document.createElement('img');
+        img.src = e.target.result;
+        img.height = 128;
+        if (stretch)
+            img.width = 128;
+        img.setAttribute('id', stringToHash(img.src));
+        img.setAttribute('draggable', 'true');
+
+        img.addEventListener('click', (ev) => {
+            ev.target.parentElement.removeChild(ev.target);
+        });
+        img.addEventListener('dragstart', (ev) => {
+            ev.dataTransfer.setData('text/plain', ev.target.id);
+        });
+
+        cb(img);
+    };
+    reader.readAsDataURL(file);
+}
+
+function preventDefault(ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+}

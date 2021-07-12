@@ -11,26 +11,9 @@ function saveModal() {
     tier_row.firstChild.style.backgroundColor = color;
 
     files.forEach(image => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            let img = document.createElement('img');
-            img.src = e.target.result;
-            img.height = 128;
-            if (stretch)
-                img.width = 128;
-            img.setAttribute('id', stringToHash(img.src));
-            img.setAttribute('draggable', 'true');
-
-            img.addEventListener('click', (ev) => {
-                ev.target.parentElement.removeChild(ev.target);
-            });
-            img.addEventListener('dragstart', (ev) => {
-                ev.dataTransfer.setData('text/plain', ev.target.id);
-            });
-
-            tier_row.children[1].appendChild(img);
-        };
-        reader.readAsDataURL(image);
+        loadImageAndAddToDOM(image, stretch, (el) => {
+            tier_row.children[1].appendChild(el);
+        });
     });
 
     modal.hide();
