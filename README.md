@@ -9,6 +9,7 @@ A fun side-project to make tier lists in your browser.
 * change the color of a given tier
 * stretch (to a square) or not an image when uploading it using the `+`
 * export as an image
+* everything stays in your browser, nothing is uploaded to the server: you keep your data
 
 ## Launching
 
