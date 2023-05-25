@@ -1,123 +1,228 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>TierListMaker</title>
-        <meta charset="utf-8">
-        <meta name="author" content="Alexandre SuperFola Plateau">
-        <meta name="description" content="Tier List maker">
-        <meta name="keywords" content="tier list, online, ranking">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <title>TierListMaker</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nicholas VanCise" />
+    <meta name="description" content="Tier List maker" />
+    <meta name="keywords" content="tier list, online, ranking" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
 
-        <link href="/assets/css/colors.css" rel="stylesheet">
-        <link href="/assets/css/custom.css" rel="stylesheet">
+    <link href="/assets/css/colors.css" rel="stylesheet" />
+    <link href="/assets/css/custom.css" rel="stylesheet" />
 
-        <script src="/assets/js/html2canvas.min.js" defer></script>
-        <script src="/assets/js/utils.js" defer></script>
-        <script src="/assets/js/export2image.js" defer></script>
-        <script src="/assets/js/saveModal.js" defer></script>
-        <script src="/assets/js/tier-table.js" defer></script>
-        <script src="/assets/js/main.js" defer></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">TierListMaker</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://paypal.me/lexplt">
-                                Support me
-                                &nbsp;
-                                <span class="icon">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/SuperFola/TierListMaker">
-                                Source code
-                                &nbsp;
-                                <span class="icon">
-                                    <i class="fab fa-github"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container-md">
-            <div class="d-flex flex-lg-row flex-column-reverse align-items-start">
-                <div class="w-100 p-2">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="col-1 text-center">Tier</th>
-                                <th scope="col" class="col-9 text-center">Content</th>
-                                <th scope="col" class="col-2 text-center" id="settings">
-                                    <span class="d-none d-md-inline">Settings</span>
-                                    <span class="icon">
-                                        <i class="fas fa-cog"></i>
-                                    </span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody"></tbody>
-                    </table>
-                </div>
-                <div class="w-max-25 p-2">
-                    Number of rows
-                    <select class="form-select" aria-label="Row count" id="selectRowCount"></select>
-                    <hr>
-                    <p>Click on an image to remove it.</p>
-                    <p>Drag and drop images between tiers to reorder them.</p>
-                    <p>Drag images from your computer to quickly add them to a tier.</p>
-                    <hr>
-                    <button type="button" class="btn btn-primary" id="btn-export">Create an image</button>
-                    <div>
-                        <ul id="imageList"></ul>
-                    </div>
-                </div>
-            </div>
+    <script src="/assets/js/html2canvas.min.js" defer></script>
+    <script src="/assets/js/utils.js" defer></script>
+    <script src="/assets/js/export2image.js" defer></script>
+    <script src="/assets/js/saveModal.js" defer></script>
+    <script src="/assets/js/tier-table.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">TierListMaker</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                target="_blank"
+                href="https://github.com/thenick775/TierListMaker"
+              >
+                Source code &nbsp;
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="btn-export" class="nav-link" href="#">
+                Screenshot &nbsp;
+                <span class="icon">
+                  <i class="fa fa-print"></i>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                id="btn-help"
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#helpModal"
+              >
+                Help &nbsp;
+                <span class="icon">
+                  <i class="fa fa-hands-helping"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
+    </nav>
 
-        <div class="modal" id="addContentModal" tabindex="-1" aria-labelledby="addContentModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addContentModalTitle"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="addContentModalBody">
-                        <form>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Choose an image</label>
-                                <input class="form-control" type="file" accept="image/x-png,image/gif,image/jpeg" multiple id="formFile">
-                            </div>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Stretch image</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="colorInput" class="form-label">Tier color</label>
-                                <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your color">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="addContentModalSaveBtn">Save changes</button>
-                    </div>
-                </div>
-            </div>
+    <div class="container-md">
+      <div class="d-flex flex-lg-row flex-column-reverse align-items-start">
+        <div class="w-100 p-2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1 text-center">Tier</th>
+                <th scope="col" class="col-9 text-center">Content</th>
+                <th scope="col" class="col-2 text-center" id="settings">
+                  <span class="d-none d-md-inline">Settings</span>
+                  <span class="icon">
+                    <i class="fas fa-cog"></i>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+          <button id="addRowButton" type="button" class="btn btn-primary">
+            Add row
+          </button>
         </div>
-    </body>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="addContentModal"
+      tabindex="-1"
+      aria-labelledby="addContentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addContentModalTitle"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="addContentModalBody">
+            <form>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Choose an image</label>
+                <input
+                  class="form-control"
+                  type="file"
+                  accept="image/x-png,image/gif,image/jpeg,image/png"
+                  multiple
+                  id="formFile"
+                />
+              </div>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                />
+                <label class="form-check-label" for="flexSwitchCheckDefault"
+                  >Stretch image</label
+                >
+              </div>
+              <div class="mb-3">
+                <label for="colorInput" class="form-label">Tier color</label>
+                <input
+                  type="color"
+                  class="form-control form-control-color"
+                  id="colorInput"
+                  value="#563d7c"
+                  title="Choose your color"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="addContentModalSaveBtn"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="helpModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="helpModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="helpModalLabel">Help</h5>
+          </div>
+          <div class="modal-body">
+            <p>Click on an image to remove it.</p>
+            <p>Drag and drop images between tiers to reorder them.</p>
+            <p>
+              Drag and drop images over other images to reorder them within a
+              tier.
+            </p>
+            <p>Drag images from your computer to quickly add them to a tier.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
