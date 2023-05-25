@@ -25,4 +25,4 @@ Then open your browser and go to http://localhost:8000/
 
 ## Screenshots
 
-<img src="./readme-graphics/inclement_emerald.png" width="400px">
+<img src="./readme-graphics/inclement_emerald_megas.png" width="400px">
