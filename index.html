@@ -14,6 +14,7 @@
 
         <link href="./assets/css/colors.css" rel="stylesheet">
         <link href="./assets/css/custom.css" rel="stylesheet">
+        <link href="./assets/css/dark-mode.css" rel="stylesheet">
 
         <script src="./assets/js/html2canvas.min.js" defer></script>
         <script src="./assets/js/utils.js" defer></script>
@@ -21,6 +22,7 @@
         <script src="./assets/js/saveModal.js" defer></script>
         <script src="./assets/js/tier-table.js" defer></script>
         <script src="./assets/js/main.js" defer></script>
+        <script src="./assets/js/dark-mode.js" defer></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,6 +52,11 @@
                             </a>
                         </li>
                     </ul>
+                    <div class="nav-item ms-auto">
+                        <button id="darkModeToggle" class="btn btn-outline-secondary">
+                            <i class="fas fa-moon"></i> Dark Mode
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -76,6 +83,9 @@
                 <div class="w-max-25 p-2">
                     Number of rows
                     <select class="form-select" aria-label="Row count" id="selectRowCount"></select>
+                    <div id="tierNames" class="mt-3">
+                        <!-- Tier name inputs will be dynamically added here -->
+                    </div>
                     <hr>
                     <p>Click on an image to remove it.</p>
                     <p>Drag and drop images between tiers to reorder them.</p>
@@ -121,4 +131,3 @@
         </div>
     </body>
 </html>
-
