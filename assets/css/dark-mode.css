@@ -1,0 +1,52 @@
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+.dark-mode .navbar {
+    background-color: #222 !important;
+}
+
+.dark-mode .navbar-brand,
+.dark-mode .nav-link {
+    color: #f0f0f0 !important;
+}
+
+.dark-mode .table {
+    color: #f0f0f0;
+}
+
+.dark-mode .modal-content {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+.dark-mode .btn-outline-secondary {
+    color: #f0f0f0;
+    border-color: #f0f0f0;
+}
+
+.dark-mode .btn-outline-secondary:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.dark-mode #darkModeToggle {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.dark-mode .form-select,
+.dark-mode .form-control {
+    background-color: #444;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+.dark-mode .form-select option {
+    background-color: #444;
+}
+
+.dark-mode .table th[scope="row"] {
+    color: #333 !important; 
+}

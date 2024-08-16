@@ -7,7 +7,7 @@ const tiers = [
     'E',
     'F',
     'G',
-]
+];
 
 const spacing = () => {
     let span = document.createElement('span');
@@ -49,6 +49,7 @@ function moveRowUp(row_id, table_id) {
 
     row.parentElement.removeChild(row);
     table.insertBefore(row, previous);
+    updateTierNames();
 }
 
 function moveRowDown(row_id, table_id) {
@@ -63,10 +64,22 @@ function moveRowDown(row_id, table_id) {
         row.parentElement.removeChild(row);
         table.appendChild(row);
     }
+    updateTierNames();
+}
+
+function updateTierNames() {
+    const rows = document.querySelectorAll('#tableBody tr');
+    rows.forEach((row, index) => {
+        const tierHeader = row.querySelector('th');
+        const tierNameInput = document.getElementById(`tierName${index}`);
+        if (tierHeader && tierNameInput) {
+            tierNameInput.value = tierHeader.innerText;
+        }
+    });
 }
 
 function addElementInRow(row_id, table_id) {
-    const tier = tiers.filter((value) => value.toLowerCase() === row_id.replace(/^tier-/, ''))[0];
+    const tier = document.getElementById(row_id).firstChild.innerText;
     document.getElementById('addContentModalTitle').innerText = `Add content to tier ${tier}`;
 
     const tier_color = window.getComputedStyle(document.getElementById(row_id).firstChild)
@@ -111,7 +124,7 @@ function createSettingsTd(row_id, table_id) {
     return container;
 }
 
-function generateTable(identifier, count=-1) {
+function generateTable(identifier, count = -1) {
     if (count === -1) {
         count = tiers.length;
     }
@@ -119,12 +132,10 @@ function generateTable(identifier, count=-1) {
     const table_body = document.getElementById(identifier);
     table_body.innerHTML = '';
 
-    tiers.forEach((value, index) => {
-        // early return if we displayed enough
-        if (index >= count)
-            return;
-
-        const row_name = value.toLowerCase();
+    for (let i = 0; i < count; i++) {
+        const tierNameInput = document.getElementById(`tierName${i}`);
+        const value = tierNameInput && tierNameInput.value !== '' ? tierNameInput.value : tiers[i];
+        const row_name = tiers[i].toLowerCase();
         const row_identifier = `tier-${row_name}`;
 
         const tier_th = document.createElement('th');
@@ -175,5 +186,6 @@ function generateTable(identifier, count=-1) {
         row.appendChild(settings);
 
         table_body.appendChild(row);
-    });
+    }
+    updateTierNames();
 }
